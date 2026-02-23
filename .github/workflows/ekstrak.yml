@@ -1,0 +1,25 @@
+name: Ekstrak dist.zip
+
+on:
+  push:
+    paths:
+      - 'dist.zip'
+
+jobs:
+  ekstrak:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v2
+
+      - name: Ekstrak dist.zip
+        run: |
+          unzip dist.zip
+          rm dist.zip
+
+      - name: Commit perubahan
+        run: |
+          git add .
+          git commit -m "Ekstrak dist.zip"
+          git push origin main
+          
